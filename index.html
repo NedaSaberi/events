@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #item, #item2{
+            width: 250px;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            color: #fff;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body onload="loadBody()">
+    <div id="item" onmousedown="mDown(this)" onmouseover="mOver(this)" onmouseout="mOut(this)" onmouseup="mUp(this)">Take an action on me!</div>
+    <br><div id="item2">Take an action on me!</div><br>
+    <p id="text"></p>
+    <input type="text" id="txt" onchange="onchg(this)">
+    <p id="msg"></p>
+    <p id="msg2"></p>
+    <script>
+        function loadBody(){
+            // alert('Body loaded ...');
+        }
+        function mDown(obj){
+            obj.innerHTML = "on mouse down";
+            obj.style.backgroundColor = "red";
+        }
+        function mOver(obj){
+            obj.innerHTML = "on mouse over";
+            obj.style.backgroundColor = "blue";
+        }
+        function mOut(obj){
+            obj.innerHTML = "on mouse out";
+            obj.style.backgroundColor = "gray";
+        }
+        function mUp(obj){
+            obj.innerHTML = "on mouse up";
+            obj.style.backgroundColor = "green";
+        }
+////////////// تعریف در لحظه //////////////////////
+        document.getElementById('item').onclick = clickEvent;
+        function clickEvent(){
+            alert('Clicked ...');
+        }
+
+        //////////////////////
+
+        function onchg(obj){
+            obj.value = obj.value.toUpperCase();
+        }
+        ////////////
+        var x = document.getElementById('item2');
+        // x.addEventListener("mouseover", over);
+        // function over(){
+        //     x.style.backgroundColor= "blue";
+        // }
+        x.addEventListener("mouseout", out);
+        function out(){
+            x.style.backgroundColor= "gray";
+        }
+        x.addEventListener("mousedown", function(){
+            x.style.backgroundColor = "red";
+            x.innerHTML = "Mouse down";
+        });
+        ///////////// حالا اگه دلم بخاد بهش ورودی بدم. مثلا اون بالاییه //////////////////
+        x.addEventListener("mouseover", function(){
+            over(x);
+        });
+         function over(obj){
+            obj.style.backgroundColor= "blue";
+        }
+
+        ///////////////
+        window.addEventListener("resize", rnd);
+        window.addEventListener("resize", winwidth);
+        function rnd(){
+            document.getElementById('msg').innerHTML = "a random number: "+ Math.random();
+        }
+        function winwidth() {
+            document.getElementById('msg2').innerHTML += "<br>" + window.innerWidth;
+        }
+    </script>
+</body>
+</html>
